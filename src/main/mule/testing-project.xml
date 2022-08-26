@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:azure-storage="http://www.mulesoft.org/schema/mule/azure-storage"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/azure-storage http://www.mulesoft.org/schema/mule/azure-storage/current/mule-azure-storage.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="9db372cc-ca96-4b88-8f0e-cd7bf7dcac7b" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<azure-storage:config name="Azure_Storage_Config" doc:name="Azure Storage Config" doc:id="f14771c5-6fa3-42e7-9ad6-ea28d1f1625c" >
+		<azure-storage:access-key-azure-connection accountName="HELLO " accountKey="HI" />
+	</azure-storage:config>
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="37a3c600-710a-4da6-8710-eda4644f277b" >
+		<db:my-sql-connection host="local" port="6879" user="tydh" password="jhgdmmanc" />
+	</db:config>
+	<flow name="testing-projectFlow" doc:id="25c3dff4-341b-44bd-9d61-a5887129c517" >
+		<http:listener doc:name="Listener" doc:id="54b2b422-4631-48d2-9c7b-cb12a898217d" config-ref="HTTP_Listener_config" path="/path"/>
+		<logger level="INFO" doc:name="Logger" doc:id="47bd54aa-8684-4f52-8e97-de6f5395bd45" message="start log"/>
+		<logger level="INFO" doc:name="Logger" doc:id="381fe389-fa9f-4479-9672-8a80d5f627d9" message="END LOG"/>
+	</flow>
+</mule>
